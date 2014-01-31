@@ -21,7 +21,7 @@ describe "when name is not present" do
   it { should_not be_valid }
 end
 
-describe "whwn email is not present" do
+describe "when email is not present" do
   before {@user.email=""}
   it {should_not be_valid}
 end
