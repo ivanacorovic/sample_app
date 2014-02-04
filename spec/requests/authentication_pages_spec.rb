@@ -61,7 +61,6 @@ describe "Authentication" do
           end
         end
       end
-      
 
       describe "in the Users controller" do
 
@@ -80,7 +79,20 @@ describe "Authentication" do
         end
       end
 
-       describe "as non-admin user" do
+      describe "in the Microposts controller" do
+
+        describe "submitting to the create action" do
+          before { post microposts_path }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+
+        describe "submitting to the destroy action" do
+          before { delete micropost_path(FactoryGirl.create(:micropost)) }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+      end
+
+      describe "as non-admin user" do
       let(:user) { FactoryGirl.create(:user) }
       let(:non_admin) { FactoryGirl.create(:user) }
 
